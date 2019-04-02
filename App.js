@@ -19,18 +19,15 @@ import {
 } from 'react-native';
 import {NativeModules} from 'react-native';
 const AppDelegate = NativeModules.AppDelegate;
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
 type Props = {};
 
 const widthScreen = Dimensions.get('window').width;
-const offsetUnitX = (widthScreen -180)/180.0
-const offsetUnitY = (200-100)/90.0
+const rotateXDeg = 90.0 //x轴最终旋转的角度为90度
+const offsetX = (widthScreen -80)/2.0 //为 终点坐标左上角X轴坐标位置
+const offsetY = 50 //200 为终点左上角Y轴坐标位置
+const offsetUnitX = (offsetX - 50)/rotateXDeg//x轴单位位移量 180 为 获取到的组件坐标的x值+组件宽度 50 为 组件初始x轴坐标值
+const offsetUnitY = (offsetY-100)/rotateXDeg //y轴单位位移量   100 为 获取到的组件坐标的y值+组件宽度 ;
 
 export default class App extends Component<Props> {
  
@@ -72,17 +69,17 @@ export default class App extends Component<Props> {
         // 最近一次的移动距离为gestureState.move{X,Y}
 
         // 从成为响应者开始时的累计手势移动距离为gestureState.d{x,y}
-        if(this.textRotateX < -90){
-          this.textRotateX = -90;
+        if(this.textRotateX < -rotateXDeg){
+          this.textRotateX = -rotateXDeg;
           this.setState({
             textRotateX:this.textRotateX
           })
           return
         }
-        if(gestureState.dy < 0 && this.textRotateX> -90){
+        if(gestureState.dy < 0 && this.textRotateX> -rotateXDeg){
           this.textRotateX = this.textRotateX -1;
           this.translateX = this.translateX + offsetUnitX;
-          this.translateY = this.translateY - offsetUnitY ;
+          this.translateY = this.translateY + offsetUnitY ;
           this.setState({
             textRotateX:this.textRotateX
           })
@@ -101,7 +98,7 @@ export default class App extends Component<Props> {
         }else if(gestureState.dy > 0 && this.textRotateX <= 0){
           this.textRotateX = this.textRotateX +1;
           this.translateX = this.translateX - offsetUnitX;
-          this.translateY = this.translateY + offsetUnitY ;
+          this.translateY = this.translateY - offsetUnitY ;
           this.setState({
             textRotateX:this.textRotateX
           })
@@ -125,7 +122,7 @@ export default class App extends Component<Props> {
         // 一般来说这意味着一个手势操作已经成功完成。
         // console.log("用户放开",gestureState.moveX,gestureState.moveY);
 
-        if(this.textRotateX > -45 && this.textRotateX < 45){
+        if(this.textRotateX > -rotateXDeg/2.0 && this.textRotateX < rotateXDeg/2.0){
           this.textRotateX = 0  
           this.translateX = 0;
           this.translateY = 0;
@@ -145,9 +142,9 @@ export default class App extends Component<Props> {
           })
         ]).start()
         }else{
-          this.textRotateX = -90
-          this.translateX = (widthScreen -180)/2.0;
-          this.translateY = -100;
+          this.textRotateX = -rotateXDeg
+          this.translateX = offsetX - 50;
+          this.translateY = (offsetY-100);
           this.setState({
             textRotateX:this.textRotateX
           })
@@ -225,15 +222,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 });
