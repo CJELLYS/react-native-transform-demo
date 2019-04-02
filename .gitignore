@@ -1,2 +1,12 @@
-node_modules
+
 node_modules/
+# Android/IntelliJ
+#
+build/
+.idea
+.gradle
+local.properties
+*.iml
+android/app/release
+android/app/*.log
+.meghanada
