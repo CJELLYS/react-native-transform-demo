@@ -1,371 +1,218 @@
-！[（标志）]（http://images.cnitblog.com/blog2015/497279/201505/051004492043385.png）
+# react-native-snap-carousel
+Swiper component for React Native featuring **previews**, **multiple layouts**, **parallax images**, **performant handling of huge numbers of items**, and **RTL support**. Compatible with Android & iOS.
 
-## MJRefresh
+![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-brightgreen.svg?style=flat-square&colorB=191A17)
+[![npm](https://img.shields.io/npm/v/react-native-snap-carousel.svg?style=flat-square)](https://www.npmjs.com/package/react-native-snap-carousel)
+[![npm](https://img.shields.io/npm/dm/react-native-snap-carousel.svg?style=flat-square&colorB=007ec6)](https://www.npmjs.com/package/react-native-snap-carousel)
+<!-- [![github release](https://img.shields.io/github/release/archriss/react-native-snap-carousel.svg?style=flat-square)](https://github.com/archriss/react-native-snap-carousel/releases) -->
+[![github issues](https://img.shields.io/github/issues/archriss/react-native-snap-carousel.svg?style=flat-square)](https://github.com/archriss/react-native-snap-carousel/issues)
+[![github closed issues](https://img.shields.io/github/issues-closed/archriss/react-native-snap-carousel.svg?style=flat-square&colorB=44cc11)](https://github.com/archriss/react-native-snap-carousel/issues?q=is%3Aissue+is%3Aclosed)
+[![Issue Stats](https://img.shields.io/issuestats/i/github/archriss/react-native-snap-carousel.svg?style=flat-square&colorB=44cc11)](http://github.com/archriss/react-native-snap-carousel/issues)
 
-！[podversion（https://img.shields.io/cocoapods/v/MJRefresh.svg）
+-----
 
-*使用pull-to-refresh的简单方法
+### :raised_hands: New feature: layouts
 
-##内容
-* 入门
-    * [功能【支持刷新哪种控件】]（＃Support_what_kinds_of_controls_to_refresh）
-    * [安装【如何使用MJRefresh】]（＃How_to_use_MJRefresh）
-    * [谁在使用【超过数百个应用程序正在使用MJRefresh】]（＃More_than_hundreds_of_Apps_are_using_MJRefresh）
-    * [班级【MJRefresh的班级结构图】]（＃The_Class_Structure_Chart_of_MJRefresh）
-*评论API
-	* [MJRefreshComponent.h]（＃MJRefreshComponent.h）
-	* [MJRefreshHeader.h]（＃MJRefreshHeader.h）
-	* [MJRefreshFooter.h]（＃MJRefreshFooter.h）
-	* [MJRefreshAutoFooter.h]（＃MJRefreshAutoFooter.h）
-* 例子
-    * [参考]（＃参考）
-    * [下拉刷新01-默认]（＃The_drop-down_refresh_01-Default）
-    * [下拉刷新02-动画图像]（＃The_drop-down_refresh_02-Animation_image）
-    * [下拉刷新03-隐藏时间]（＃The_drop-down_refresh_03-Hide_the_time）
-    * [下拉刷新04-隐藏状态和时间]（＃The_drop-down_refresh_04-Hide_status_and_time）
-    * [下拉刷新05-DIY标题]（＃The_drop-down_refresh_05-DIY_title）
-    * [下拉刷新06-DIY刷新控制]（＃The_drop-down_refresh_06-DIY_the_control_of_refresh）
-    * [拉动刷新01-默认]（＃The_pull_to_refresh_01-默认）
-    * [拉动刷新02-动画图像]（＃The_pull_to_refresh_02-Animation_image）
-    * [拉动刷新03-隐藏刷新状态标题]（＃The_pull_to_refresh_03-Hide_the_title_of_refresh_status）
-    * [拉动刷新04-全部加载]（＃The_pull_to_refresh_04-All_loaded）
-    * [拉动刷新05-DIY标题]（＃The_pull_to_refresh_05-DIY_title）
-    * [拉动后刷新06-隐藏后加载]（＃The_pull_to_refresh_06-Hidden_​​After_loaded）
-    * [拉动刷新07-自动拉回01]（＃The_pull_to_refresh_07-Automatic_back_of_the_pull01）
-    * [拉动刷新08-自动拉回02]（＃The_pull_to_refresh_08-Automatic_back_of_the_pull02）
-    * [拉动刷新09-DIY控制刷新（自动刷新）]（＃The_pull_to_refresh_09-DIY_the_control_of_refresh（Automatic_refresh））
-    * [拉动刷新10-DIY控制刷新（自动返回）]（＃The_pull_to_refresh_10-DIY_the_control_of_refresh（Automatic_back））
-    * [UICollectionView01-下拉和下拉刷新]（＃UICollectionView01-The_pull_and_drop-down_refresh）
-    * [UIWebView01-下拉刷新]（＃UIWebView01-The_drop-down_refresh）
-* [希望]（#Hope）
+[Do you want to find out more?](#layouts-and-custom-interpolations)
 
-## <a id="Support_what_kinds_of_controls_to_refresh"> </a>支持要刷新的控件类型
-*`UIScrollView`，`UITableView`，`UICollectionView`，`UIWebView`
+![react-native-snap-carousel default layout](https://i.imgur.com/e1WbZcu.gif)
+![react-native-snap-carousel tinder layout](https://i.imgur.com/R7OpEFs.gif)
+![react-native-snap-carousel stack layout](https://i.imgur.com/foMIGM2.gif)
 
-## <a id="How_to_use_MJRefresh"> </a>如何使用MJRefresh
-*使用CocoaPods安装：`pod'MJRefresh'`
-*使用[Carthage]安装（https://github.com/Carthage/Carthage）：`github“CoderMJLee / MJRefresh”`
-*手动导入：
-    *将`MJRefresh`文件夹中的所有文件拖到项目中
-    *导入主文件：`#import“MJRefresh.h”`
+-----
 
-```objc
-基本定制
-MJRefresh.bundle MJRefresh.h
-MJRefreshConst.h MJRefreshConst.m
-UIScrollView + MJExtension.h UIScrollView + MJExtension.m
-UIScrollView + MJRefresh.h UIScrollView + MJRefresh.m
-UIView + MJExtension.h UIView + MJExtension.m
+### :sparkles: Do you want an even better plugin? [Vote for React Native's feature requests](https://github.com/archriss/react-native-snap-carousel/issues/203) to let the Facebook team know what they need to improve!
+
+-----
+
+## Table of contents
+
+1. [Showcase](#showcase)
+1. [Usage](#usage)
+1. [Example](#example)
+1. [Props, methods and getters](#props-methods-and-getters)
+1. [Layouts and custom interpolations](#layouts-and-custom-interpolations)
+1. [`ParallaxImage` component](#parallaximage-component)
+1. [`Pagination` component](#pagination-component)
+1. [Tips and tricks](#tips-and-tricks)
+1. [Known issues](#known-issues)
+1. [Important note regarding Android](#important-note-regarding-android)
+1. [Important note regarding iOS](#important-note-regarding-ios)
+1. [Roadmap](#roadmap)
+1. [Credits](#credits)
+
+## Showcase
+
+### Archriss' "Ville d'Aix-en-Provence" app
+
+**This app is available on [Android](https://play.google.com/store/apps/details?id=fr.archriss.aixmobile.app) and [iOS](https://itunes.apple.com/fr/app/ville-daix-en-provence/id494548366?mt=8).** It uses **version 3.2.0** of the plugin, with `FlatList`'s implementation and [parallax images](#parallaximage-component).
+
+![react-native-snap-carousel archriss aix](https://i.imgur.com/pPm0csc.gif)
+![react-native-snap-carousel archriss aix](https://i.imgur.com/UFsPlz2.gif)
+
+### Archriss' showcase app
+
+**You can try the app live on [Android](https://play.google.com/store/apps/details?id=fr.archriss.demo.app) and [iOS](https://itunes.apple.com/lu/app/archriss-presentation-mobile/id1180954376?mt=8).** It currently uses **version 1.4.0** of the plugin. Be aware that sliders' layouts will break on RTL devices since support was added in version 2.1.0 (see [#38](https://github.com/archriss/react-native-snap-carousel/issues/38)).
+
+![react-native-snap-carousel](https://i.imgur.com/Fope3uj.gif)
+![react-native-snap-carousel](https://i.imgur.com/WNOBYfl.gif)
+![react-native-snap-carousel](https://i.imgur.com/sK5DKaG.gif)
+
+> Please note that **we do not plan on Open-Sourcing the code of our showcase app**. Still, we've put together [an example](#example) for you to play with, and you can find some insight about our map implementation [in this comment](https://github.com/archriss/react-native-snap-carousel/issues/11#issuecomment-265147385).
+> The folks at [codedaily.io](https://codedaily.io) have created a great tutorial about implementing a similar feature. [Go check it out!](https://codedaily.io/tutorials/9/Build-a-Map-with-Custom-Animated-Markers-and-Region-Focus-when-Content-is-Scrolled-in-React-Native)
+
+## Usage
+
+```bash
+$ npm install --save react-native-snap-carousel
 ```
 
-## <a id="More_than_hundreds_of_Apps_are_using_MJRefresh"> </a>超过数百个应用正在使用MJRefresh
-<img src =“http://images0.cnblogs.com/blog2015/497279/201506/141212365041650.png”width =“200”height =“300”>
-*有关App的更多信息可以关注：[M了个J-博客园]（http://www.cnblogs.com/mjios/p/4409853.html）
+```javascript
+import Carousel from 'react-native-snap-carousel';
 
-## <a id="The_Class_Structure_Chart_of_MJRefresh"> </a> MJRefresh的班级结构图
-！[]（http://images0.cnblogs.com/blog2015/497279/201506/132232456139177.png）
-- 图表中的“红色文本类”：您可以直接使用它们
-    - 下拉刷新控件类型
-        - 正常：`MJRefreshNormalHeader`
-        -  Gif：`MJRefreshGifHeader`
-    - 拉动刷新控件类型
-        - 自动刷新
-            - 正常：`MJRefreshAutoNormalFooter`
-            -  Gif：`MJRefreshAutoGifFooter`
-        - 自动返回
-            - 正常：`MJRefreshBackNormalFooter`
-            -  Gif：`MJRefreshBackGifFooter`
-- 图表中的“非红色文本类”：对于继承，使用DIY控制刷新
-- 关于如何DIY控制刷新，您可以参考下面的图表中的类
-<img src =“http://images0.cnblogs.com/blog2015/497279/201506/141358159107893.png”width =“30％”height =“30％”>
+export class MyCarousel extends Component {
 
-## <a id="MJRefreshComponent.h"> </a> MJRefreshComponent.h
-```objc
-/ **刷新控制的基类* /
-@interface MJRefreshComponent：UIView
-#pragma mark  - 控制Refresh的状态 
+    _renderItem ({item, index}) {
+        return (
+            <View style={styles.slide}>
+                <Text style={styles.title}>{ item.title }</Text>
+            </View>
+        );
+    }
 
-/ ** BeginRefreshing * /
-- （void）beginRefreshing;
-/ ** EndRefreshing * /
-- （void）endRefreshing; 
-/ ** IsRefreshing * /
-- （BOOL）isRefreshing;
-
-#pragma mark  - 其他
-/ **根据阻力比自动改变alpha * /
-@property（assign，nonatomic，getter = isAutomaticallyChangeAlpha）BOOL automaticChangeAlpha;
-@结束
+    render () {
+        return (
+            <Carousel
+              ref={(c) => { this._carousel = c; }}
+              data={this.state.entries}
+              renderItem={this._renderItem}
+              sliderWidth={sliderWidth}
+              itemWidth={itemWidth}
+            />
+        );
+    }
+}
 ```
 
-## <a id="MJRefreshHeader.h"> </a> MJRefreshHeader.h
-```objc
-@interface MJRefreshHeader：MJRefreshComponent
-/ **创建标题* /
-+（instancetype）headerWithRefreshingBlock：（MJRefreshComponentRefreshingBlock）refreshBlock;
-/ **创建标题* /
-+（instancetype）headerWithRefreshingTarget：（id）target refreshAction：（SEL）action;
+## Example
+You can find the following example in the [`/example` folder](https://github.com/archriss/react-native-snap-carousel/tree/master/example).
 
-/ **此键用于存储上次成功淹没的时间* /
-@property（copy，nonatomic）NSString * lastUpdatedTimeKey;
-/ **最后一次淹死成功* /
-@property（强，非原子，只读）NSDate * lastUpdatedTime;
+![react-native-snap-carousel](https://i.imgur.com/pZincya.gif)
 
-/ **忽略scrollView contentInset top * /
-@property（assign，nonatomic）CGFloat ignoredScrollViewContentInsetTop;
-@结束
+## Props, methods and getters
+
+In order to let you to create mighty carousels and to keep up with your requests, we add new features on a regular basis. Consequently, the list of available props has become really huge and deserves a documentation of its own.
+
+### :books: [Documentation for "Props, methods and getters"](https://github.com/archriss/react-native-snap-carousel/blob/master/doc/PROPS_METHODS_AND_GETTERS.md)
+
+## Layouts and custom interpolations
+
+### Built-in layouts
+
+In version `3.6.0`, we've added two new layouts on top of the original one: the first one is called 'stack' since it mimics a stack of cards, and the other one is called 'tinder' since it provides a Tinder-like animation.
+
+You can choose between the three of them using [the new prop `layout`](https://github.com/archriss/react-native-snap-carousel/blob/master/doc/PROPS_METHODS_AND_GETTERS.md#style-and-animation) and you can modify the default card offset in the 'stack' and 'tinder' layouts with [prop `layoutCardOffset`](https://github.com/archriss/react-native-snap-carousel/blob/master/doc/PROPS_METHODS_AND_GETTERS.md#style-and-animation).
+
+![react-native-snap-carousel default layout](https://i.imgur.com/e1WbZcu.gif)
+```javascript
+<Carousel layout={'default'} />
 ```
 
-## <a id="MJRefreshFooter.h"> </a> MJRefreshFooter.h
-```objc
-@interface MJRefreshFooter：MJRefreshComponent
-/ **创造页脚* /
-+（instancetype）footerWithRefreshingBlock：（MJRefreshComponentRefreshingBlock）refreshBlock;
-/ **创造页脚* /
-+（instancetype）footerWithRefreshingTarget：（id）target refreshAction：（SEL）action;
-
-/ ** NoticeNoMoreData * /
-- （void）noticeNoMoreData;
-/ ** ResetNoMoreData（清除NoMoreData的状态）* /
-- （void）resetNoMoreData;
-
-/ **忽略scrollView contentInset bottom * /
-@property（assign，nonatomic）CGFloat ignoredScrollViewContentInsetBottom;
-@结束
+![react-native-snap-carousel stack layout ios](https://i.imgur.com/c7pU4rT.gif)
+![react-native-snap-carousel stack layout android](https://i.imgur.com/AnruacR.gif)
+```javascript
+<Carousel layout={'stack'} layoutCardOffset={`18`} />
 ```
 
-## <a id="MJRefreshAutoFooter.h"> </a> MJRefreshAutoFooter.h
-```objc
-@interface MJRefreshAutoFooter：MJRefreshFooter
-/ **是否自动刷新（默认为是）* /
-@property（assign，nonatomic，getter = isAutomaticallyRefresh）BOOL automaticRefresh;
-
-/ **当控件底部有多少是自动刷新（默认为1.0，控件底部是否显示完全，将自动刷新）* /
-@property（assign，nonatomic）CGFloat triggerAutomaticallyRefreshPercent;
-@结束
+![react-native-snap-carousel tinder layout ios](https://i.imgur.com/D9QyTzb.gif)
+![react-native-snap-carousel tinder layout android](https://i.imgur.com/ab1TI4e.gif)
+```javascript
+<Carousel layout={'tinder'} layoutCardOffset={`9`} />
 ```
 
-## <a id="Reference"> </a>参考
-```objc
-*由于此框架有更多功能，请勿编写具体文字描述其用法
-*您可以直接参考示例MJTableViewController，MJCollectionViewController，MJWebViewController，更直观，更快捷。
-```
-<img src =“http://images0.cnblogs.com/blog2015/497279/201506/141345470048120.png”width =“30％”height =“30％”>
+A few things worth noting:
+* As you can see, the effect had to be inverted on Android. This has to do with [a really annoying Android-specific bug](https://github.com/archriss/react-native-snap-carousel/blob/master/doc/CUSTOM_INTERPOLATIONS.md#android).
+* Even though the new layouts have been created with horizontal carousels in mind, they will also work with vertical ones \o/
+* :warning: **You should NOT use `stack` or `tinder` layouts if you have a large data set to display.** In order to avoid rendering issues, the carousel will use a `ScrollView` component rather than a `FlatList` one for those layouts (see [prop `useScrollView`](https://github.com/archriss/react-native-snap-carousel/blob/master/doc/PROPS_METHODS_AND_GETTERS.md#behavior)). The tradeof is that you won't benefit from any of `FlatList`'s advanced optimizations. See [this issue](https://github.com/archriss/react-native-snap-carousel/issues/262) for workarounds; or you may want to implement your own [custom interpolation](#custom-interpolations).
 
-## <a id="The_drop-down_refresh_01-Default"> </a>下拉刷新01-Default
+### Custom interpolations
 
-```objc
-self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock：^ {
-   //调用此块自动进入刷新状态 
-}];
-或
-//设置回调（一旦你进入刷新状态，然后调用目标的动作，即调用[self loadNewData]）
-self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget：self refreshAction：@selector（loadNewData）];
+On top of the new layouts, we've exposed the logic we used so that users can create their own awesome layouts! If you're interested, take a deep breath and dive into the dedicated documentation.
 
-//立即输入刷新状态
-[self.tableView.mj_header beginRefreshing];
-```
-！[（下拉刷新01-普通）]（http://images0.cnblogs.com/blog2015/497279/201506/141204343486151.gif）
+### :books: [Documentation for "Custom interpolations"](https://github.com/archriss/react-native-snap-carousel/blob/master/doc/CUSTOM_INTERPOLATIONS.md)
 
-## <a id="The_drop-down_refresh_02-Animation_image"> </a>下拉刷新02-动画图片
-```objc
-//设置回调（一旦你进入刷新状态，然后调用target的动作，即调用[self loadNewData]）
-MJRefreshGifHeader * header = [MJRefreshGifHeader headerWithRefreshingTarget：self refreshAction：@selector（loadNewData）];
-//设置动画图像的普通状态
-[header setImages：idleImages forState：MJRefreshStateIdle];
-//设置动画图像的拉动状态（一旦松开就输入刷新状态）
-[header setImages：pullImages forState：MJRefreshStatePulling];
-//设置动画图像的刷新状态
-[header setImages：refreshImages forState：MJRefreshStateRefreshing];
-//设置标题
-self.tableView.mj_header = header;
-```
-！[（下拉刷新02-动画图片）（http://images0.cnblogs.com/blog2015/497279/201506/141204402238389.gif）
+Here are a few examples of what can easily be achieved (you can explore [the source code](https://github.com/archriss/react-native-snap-carousel/blob/master/example/src/utils/animations.js) and try it live in [the provided example](https://github.com/archriss/react-native-snap-carousel/tree/master/example)):
 
-## <a id="The_drop-down_refresh_03-Hide_the_time"> </a>下拉刷新03-隐藏时间
-```objc
-//隐藏时间
-header.lastUpdatedTimeLabel.hidden = YES;
-```
-！[（下拉刷新03-隐藏时间）]（http://images0.cnblogs.com/blog2015/497279/201506/141204456132944.gif）
+![react-native-snap-carousel custom layout](https://i.imgur.com/OrdLsCM.gif)
+![react-native-snap-carousel custom layout](https://i.imgur.com/slnTbyG.gif)
+![react-native-snap-carousel custom layout](https://i.imgur.com/kDx3xTc.gif)
 
-## <a id="The_drop-down_refresh_04-Hide_status_and_time"> </a>下拉刷新04-隐藏状态和时间
-```objc
-//隐藏时间
-header.lastUpdatedTimeLabel.hidden = YES;
+## `ParallaxImage` component
 
-//隐藏状态
-header.stateLabel.hidden = YES;
-```
-！[（下拉刷新04-隐藏状态和时间0）]（http://images0.cnblogs.com/blog2015/497279/201506/141204508639539.gif）
+Version `3.0.0` introduced a `<ParallaxImage />` component, an image component aware of carousel's current scroll position and therefore able to display a nice parallax effect (powered by the native driver to ensure top-notch performance).
 
-## <a id="The_drop-down_refresh_05-DIY_title"> </a>下拉刷新05-DIY标题
-```objc
-//设置标题
-[header setTitle：@“pull down to refresh”forState：MJRefreshStateIdle];
-[header setTitle：@“Release to refresh”forState：MJRefreshStatePulling];
-[header setTitle：@“Loading ...”forState：MJRefreshStateRefreshing];
+### :books: [Documentation for "`ParallaxImage` component"](https://github.com/archriss/react-native-snap-carousel/blob/master/doc/PARALLAX_IMAGE.md)
 
-//设置字体
-header.stateLabel.font = [UIFont systemFontOfSize：15];
-header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize：14];
+![react-native-snap-carousel parallax image](https://i.imgur.com/6iIb4SR.gif)
 
-//设置textColor
-header.stateLabel.textColor = [UIColor redColor];
-header.lastUpdatedTimeLabel.textColor = [UIColor blueColor];
-```
-！[（下拉刷新05-自定义文字）（http://images0.cnblogs.com/blog2015/497279/201506/141204563633593.gif）
+## `Pagination` component
 
-## <a id="The_drop-down_refresh_06-DIY_the_control_of_refresh"> </a>下拉刷新06-DIY控制刷新
-```objc
-self.tableView.mj_header = [MJDIYHeader headerWithRefreshingTarget：self refreshAction：@selector（loadNewData）];
-//对MJDIYHeader.h和MJDIYHeader.m的实现引用
-```
-！[（下拉刷新06-自定义刷新控件）（http://images0.cnblogs.com/blog2015/497279/201506/141205019261159.gif）
+Starting with version `2.4.0`, a customizable `<Pagination />` component has been added. You can see below how it looks like with its default configuration.
 
-## <a id="The_pull_to_refresh_01-Default"> </a>拉动刷新01-默认
-```objc
-self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock：^ {
-    //调用此块自动进入刷新状态
-}];
-或
-//设置回调（一旦你进入刷新状态，然后调用目标的动作，即调用[self loadMoreData]）
-self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget：self refreshAction：@selector（loadMoreData）];
-```
-！[（上拉刷新01-默认）]（http://images0.cnblogs.com/blog2015/497279/201506/141205090047696.gif）
+### :books: [Documentation for "`Pagination` component"](https://github.com/archriss/react-native-snap-carousel/blob/master/doc/PAGINATION.md)
 
-## <a id="The_pull_to_refresh_02-Animation_image"> </a>拉动刷新02-动画图片
-```objc
-//设置回调（一旦你进入刷新状态，然后调用目标的动作，即调用[self loadMoreData]）
-MJRefreshAutoGifFooter * footer = [MJRefreshAutoGifFooter footerWithRefreshingTarget：self refreshAction：@selector（loadMoreData）];
+![react-native-snap-carousel pagination](https://i.imgur.com/FLQcGGL.gif)
 
-//设置刷新图像
-[footer setImages：refreshImages forState：MJRefreshStateRefreshing];
+## Tips and tricks
 
-//设置页脚
-self.tableView.mj_footer = footer;
-```
-！[（上拉刷新02-动画图片）（http://images0.cnblogs.com/blog2015/497279/201506/141205141445793.gif）
+We've gathered together all the useful tips and tricks. There is a bunch of them, which makes **this section a must-read!**
 
-## <a id="The_pull_to_refresh_03-Hide_the_title_of_refresh_status"> </a>提取刷新03-隐藏刷新状态标题
-```objc
-//隐藏刷新状态的标题
-footer.refreshingTitleHidden = YES;
-//如果没有上面的方法，那么使用footer.stateLabel.hidden = YES;
-```
-！[（上拉刷新03-隐藏刷新状态的文字）（http://images0.cnblogs.com/blog2015/497279/201506/141205200985774.gif）
+### :books: [Documentation for "Tips and tricks"](https://github.com/archriss/react-native-snap-carousel/blob/master/doc/TIPS_AND_TRICKS.md)
 
-## <a id="The_pull_to_refresh_04-All_loaded"> </a>拉动刷新04-全部加载
-```objc
-//成为NoMoreData的状态
-[footer noticeNoMoreData];
-```
-！[（上拉刷新04-全部加载完毕）]（http://images0.cnblogs.com/blog2015/497279/201506/141205248634686.gif）
+## Known issues
 
-## <a id="The_pull_to_refresh_05-DIY_title"> </a>拉动刷新05-DIY标题
-```objc
-//设置标题
-[footer setTitle：@“点击或向上拖动以刷新”forState：MJRefreshStateIdle];
-[footer setTitle：@“正在加载更多...”forState：MJRefreshStateRefreshing];
-[footer setTitle：@“没有更多数据”forState：MJRefreshStateNoMoreData];
+**Make sure to read about the known issues before opening a new one**; you may find something useful.
 
-//设置字体
-footer.stateLabel.font = [UIFont systemFontOfSize：17];
+### :books: [Documentation for "Known issues"](https://github.com/archriss/react-native-snap-carousel/blob/master/doc/KNOWN_ISSUES.md)
 
-//设置textColor
-footer.stateLabel.textColor = [UIColor blueColor];
-```
-！[（上拉刷新05-自定义文字）（http://images0.cnblogs.com/blog2015/497279/201506/141205295511153.gif）
+## Important note regarding Android
 
-## <a id="The_pull_to_refresh_06-Hidden_​​After_loaded"> </a>拉动刷新06-Hidden After loaded
-```objc
-//拉动的隐藏电流控制刷新
-self.tableView.mj_footer.hidden = YES;
-```
-！[（上拉刷新06-加载后隐藏）（http://images0.cnblogs.com/blog2015/497279/201506/141205343481821.gif）
+![react-native-snap-carousel android](https://i.imgur.com/03iuB2Um.jpg)
 
-## <a id="The_pull_to_refresh_07-Automatic_back_of_the_pull01"> </a>拉动刷新07-自动返回pull01
-```objc
-self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget：self refreshAction：@selector（loadMoreData）];
-```
-！[（上拉刷新07-自动回弹的上拉01）]（http://images0.cnblogs.com/blog2015/497279/201506/141205392239231.gif）
+Android's debug mode is a mess: timeouts regularly desynchronize and scroll events are fired with some lag, which completely alters the inner logic of the carousel. **On Android, you *will* experience issues with carousel's behavior when JS Dev Mode is enabled, and you *might* have trouble with unreliable callbacks and loop mode when it isn't**. This is unfortunate, but it's rooted in various flaws of `ScrollView`/`FlatList`'s implementation and the miscellaneous workarounds we had to implement to compensate for it.
 
-## <a id="The_pull_to_refresh_08-Automatic_back_of_the_pull02"> </a>拉动刷新08-自动拉回拉力02
-```objc
-MJRefreshBackGifFooter * footer = [MJRefreshBackGifFooter footerWithRefreshingTarget：self refreshAction：@selector（loadMoreData）];
+:warning: **Therefore you should always check if the issue you experience also happens in a production environment. This is, sadly, the only way to test the real performance and behavior of the carousel.**
 
-//设置动画图像的正常状态
-[footer setImages：idleImages forState：MJRefreshStateIdle];
-//设置动画图像的拉动状态（一旦松开就输入刷新状态）
-[footer setImages：pullImages forState：MJRefreshStatePulling];
-//设置动画图像的刷新状态
-[footer setImages：refreshImages forState：MJRefreshStateRefreshing];
+> For more information, you can read the following notes: ["Android performance"](https://github.com/archriss/react-native-snap-carousel/blob/master/doc/KNOWN_ISSUES.md#android-performance) and ["Unreliable callbacks"](https://github.com/archriss/react-native-snap-carousel/blob/master/doc/KNOWN_ISSUES.md#unreliable-callbacks).
 
-//设置页脚
-self.tableView.mj_footer = footer;
-```
-！[（上拉刷新07-自动回弹的上拉02）]（http://images0.cnblogs.com/blog2015/497279/201506/141205441443628.gif）
+## Important note regarding iOS
 
-## <a id="The_pull_to_refresh_09-DIY_the_control_of_refresh(Automatic_refresh)"> </a>刷新刷新09-DIY控制刷新（自动刷新）
-```objc
-self.tableView.mj_footer = [MJDIYAutoFooter footerWithRefreshingTarget：self refreshAction：@selector（loadMoreData）];
-//对MJDIYAutoFooter.h和MJDIYAutoFooter.m的实现引用
-```
-！[（上拉刷新09-自定义刷新控件（自动刷新））]（http://images0.cnblogs.com/blog2015/497279/201506/141205500195866.gif）
+![react-native-snap-carousel ios](https://i.imgur.com/npuiUSbh.png)
 
-## <a id="The_pull_to_refresh_10-DIY_the_control_of_refresh(Automatic_back)"> </a>刷新10-DIY控制刷新（自动返回）
-```objc
-self.tableView.mj_footer = [MJDIYBackFooter footerWithRefreshingTarget：self refreshAction：@selector（loadMoreData）];
-//对MJDIYBackFooter.h和MJDIYBackFooter.m的实现引用
-```
-！[（上拉刷新10-自定义刷新控件（自动回弹））]（http://images0.cnblogs.com/blog2015/497279/201506/141205560666819.gif）
+:warning: When debugging with the iOS simulator, **you're only one "Cmd + T" away from toggling "Slow Animations"**. If carousel's animations seem painfully slow, make sure that you haven't enabled this setting by mistake.
 
-## <a id="UICollectionView01-The_pull_and_drop-down_refresh"> </a> UICollectionView01-下拉和下拉刷新
-```objc
-//下拉刷新
-self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock：^ {
-   //调用此块自动进入刷新状态 
-}];
+## Roadmap
 
-//拉动刷新
-self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock：^ {
-   //调用此块自动进入刷新状态
-}];
-```
-！[（UICollectionView01-上下拉刷新）]（http://images0.cnblogs.com/blog2015/497279/201506/141206021603758.gif）
+- [ ] Add [more examples](https://github.com/archriss/react-native-snap-carousel/issues/257)
+- [ ] Base the plugin on a component less buggy than `FlatList`
+- [X] Implement different layouts and allow using custom interpolations
+- [X] Implement both `FlatList` and `ScrollView` handling
+- [X] Add the ability to provide custom items animation
+- [X] Implement 'loop' mode
+- [X] Improve Android's behavior
+- [x] Add parallax image component
+- [x] Base the plugin on `FlatList` instead of `ScrollView`
+- [x] Add alignment option
+- [x] Add pagination component
+- [x] Add vertical implementation
+- [x] Handle device orientation event (see [this note](https://github.com/archriss/react-native-snap-carousel/blob/master/doc/TIPS_AND_TRICKS.md#handling-device-rotation))
+- [x] Add RTL support
+- [x] Improve momemtum handling
+- [x] Improve snap on Android
+- [x] Handle passing 1 item only
+- [x] Fix centering
 
-## <a id="UIWebView01-The_drop-down_refresh"> </a> UIWebView01-下拉刷新
-```objc
-//添加下拉刷新的控件
-self.webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock：^ {
-   //调用此块自动进入刷新状态
-}];
-```
-！[（UICollectionView01-上下拉刷新）]（http://images0.cnblogs.com/blog2015/497279/201506/141206080514524.gif）
+## Credits
 
-＃＃ 提醒
-* ARC
-* iOS> = 8.0
-*无论如何，iPhone \ iPad屏幕
-
-## <a id="Hope"> </a>希望
-*如果您在使用时发现错误，希望您可以发帖我，谢谢您或尝试下载此框架的最新代码以查看BUG是否已修复）
-*如果你发现使用时功能不够，希望你能问我，我非常想为这个框架添加更多有用的功能，谢谢！
-*如果您想为MJRefresh贡献代码，请拉我的请求
-*如果你在开发应用程序中使用MJRefresh，希望你可以去[CocoaControls]（https://www.cocoacontrols.com/controls/mjrefresh）添加iTunes路径
- 你的应用程序，我将安装你的应用程序，并根据许多应用程序的使用，是一个更好的设计和改进MJRefresh，谢谢！
-   * StepO1（微信只是一个例子，探索“你的应用名称itunes”）
-！[（step01）（http://ww4.sinaimg.cn/mw1024/800cdf9ctw1eq0viiv5rsj20sm0ea41t.jpg）
-   * StepO2
-！[（步骤02）]（http://ww2.sinaimg.cn/mw1024/800cdf9ctw1eq0vilejxlj20tu0me7a0.jpg）
-   * StepO3
-！[（步骤03）]（http://ww1.sinaimg.cn/mw1024/800cdf9ctw1eq0viocpo5j20wc0dc0un.jpg）
-   * StepO4
-！[（步骤04）]（http://ww3.sinaimg.cn/mw1024/800cdf9ctw1eq0vir137xj20si0gewgu.jpg）
-
-##寻求志同道合的小伙伴
-
-- 因本人工作忙，没有太多时间去维护MJRefresh，在此向广大框架使用者说声：非常抱歉！😞
-- 现寻求志同道合的小伙伴一起维护此框架，有兴趣的小伙伴可以[发邮件]（mailto：richermj123go@vip.qq.com）给我，非常感谢😊
-- 如果一切OK，我将开放框架维护权限（github，pod等）
-- 目前已经找到3位小伙伴（^  -  ^）V
+Written by [Benoît Delmaire](https://fr.linkedin.com/in/benoitdelmaire) ([bd-arc](https://github.com/bd-arc)) and [Maxime Bertonnier](https://fr.linkedin.com/in/maxime-bertonnier-744351aa) ([Exilz](https://github.com/Exilz)) at
+[Archriss](http://www.archriss.com/).
